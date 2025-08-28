@@ -10,7 +10,7 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, isLoading, error } = useGames(gameQuery);
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
   return (
     <>
       <SimpleGrid columns={[1, 2, 3, 3, 4, 5]} gap={4}>
@@ -19,7 +19,7 @@ const GameGrid = ({ gameQuery }: Props) => {
             <GameCardSkeleton key={index} />
           ))}
         {!isLoading &&
-          data.map((game) => <GameCard key={game.id} game={game} />)}
+          data?.results.map((game) => <GameCard key={game.id} game={game} />)}
       </SimpleGrid>
     </>
   );

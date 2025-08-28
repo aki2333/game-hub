@@ -23,7 +23,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
           <Menu.Item value="" onClick={() => onSelectPlatform(null)}>
             All
           </Menu.Item>
-          {data.map((platform) => (
+          {data?.results.map((platform) => (
             <Menu.Item
               key={platform.id}
               value={platform.id + ""}

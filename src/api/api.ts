@@ -1,5 +1,8 @@
 import axios from "axios";
-
+export interface Response<T> {
+  count: number;
+  results: T[];
+}
 const api = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: {
