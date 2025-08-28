@@ -2,8 +2,8 @@ import { Button, Menu } from "@chakra-ui/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface Props {
-  selectedSort: string | null;
-  onSelectSort: (sort: string | null) => void;
+  selectedSort: string;
+  onSelectSort: (sort: string) => void;
 }
 const SortSelector = ({ selectedSort, onSelectSort }: Props) => {
   // name, released, added, created, updated, rating, metacritic

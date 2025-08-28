@@ -3,7 +3,6 @@ export interface Response<T> {
   count: number;
   results: T[];
   next?: string | null;
-  previous?: string | null;
 }
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
