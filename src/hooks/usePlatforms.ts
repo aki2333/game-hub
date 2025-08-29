@@ -8,7 +8,7 @@ export interface Platform {
   slug: string;
 }
 
-const api = new apiClient<Platform>("/platforms");
+const api = new apiClient<Platform>("/platforms/lists/parents");
 const usePlatforms = () =>
   useQuery({
     queryKey: ["platforms"],

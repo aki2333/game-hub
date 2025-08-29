@@ -6,7 +6,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface Props {
   selectedPlatformId?: number;
-  onSelectPlatform: (platform: Platform | null) => void;
+  onSelectPlatform: (platform: Platform) => void;
 }
 const PlatformSelector = ({ selectedPlatformId, onSelectPlatform }: Props) => {
   const { data, error } = usePlatforms();
@@ -22,9 +22,6 @@ const PlatformSelector = ({ selectedPlatformId, onSelectPlatform }: Props) => {
       </Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item value="" onClick={() => onSelectPlatform(null)}>
-            All
-          </Menu.Item>
           {data?.results.map((platform) => (
             <Menu.Item
               key={platform.id}
