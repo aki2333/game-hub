@@ -1,12 +1,11 @@
+import useGameQueryStore from "@/stores/gameQueryStore";
 import { Input, InputGroup, Kbd } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 
-interface Props {
-  onSearch: (query: string) => void;
-}
-const SearchText = ({ onSearch }: Props) => {
+const SearchText = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const setSearchText = useGameQueryStore((s) => s.setSearchText);
   // 快捷键⌘K focus
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -24,7 +23,7 @@ const SearchText = ({ onSearch }: Props) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSearch(inputRef.current?.value || "");
+        setSearchText(inputRef.current?.value || "");
       }}
     >
       <InputGroup startElement={<LuSearch />} endElement={<Kbd>⌘K</Kbd>}>

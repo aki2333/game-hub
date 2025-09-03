@@ -1,11 +1,8 @@
+import useGameQueryStore from "@/stores/gameQueryStore";
 import { Button, Menu } from "@chakra-ui/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-interface Props {
-  selectedSort: string;
-  onSelectSort: (sort: string) => void;
-}
-const SortSelector = ({ selectedSort, onSelectSort }: Props) => {
+const SortSelector = () => {
   // name, released, added, created, updated, rating, metacritic
   const sortOptions = [
     { value: "released", label: "Released" },
@@ -16,9 +13,9 @@ const SortSelector = ({ selectedSort, onSelectSort }: Props) => {
     { value: "-rating", label: "Rating" },
     { value: "-metacritic", label: "Metacritic" },
   ];
-  const currentSort = sortOptions.find(
-    (option) => option.value === selectedSort
-  );
+  const setSort = useGameQueryStore((s) => s.setSort);
+  const ordering = useGameQueryStore((s) => s.gameQuery.ordering);
+  const currentSort = sortOptions.find((option) => option.value === ordering);
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
@@ -33,7 +30,7 @@ const SortSelector = ({ selectedSort, onSelectSort }: Props) => {
             <Menu.Item
               key={option.value}
               value={option.value}
-              onClick={() => onSelectSort(option.value)}
+              onClick={() => setSort(option.value)}
             >
               {option.label}
             </Menu.Item>

@@ -1,16 +1,14 @@
 import usePlatform from "@/hooks/usePlatform";
-import type { Platform } from "@/hooks/usePlatforms";
 import usePlatforms from "@/hooks/usePlatforms";
+import useGameQueryStore from "@/stores/gameQueryStore";
 import { Button, Menu } from "@chakra-ui/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-interface Props {
-  selectedPlatformId?: number;
-  onSelectPlatform: (platform: Platform) => void;
-}
-const PlatformSelector = ({ selectedPlatformId, onSelectPlatform }: Props) => {
+const PlatformSelector = () => {
+  const setPlatform = useGameQueryStore((s) => s.setPlatform);
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
   const { data, error } = usePlatforms();
-  const selectedPlatform = usePlatform(selectedPlatformId);
+  const selectedPlatform = usePlatform(platformId);
   if (error) return null;
   return (
     <Menu.Root>
@@ -26,7 +24,7 @@ const PlatformSelector = ({ selectedPlatformId, onSelectPlatform }: Props) => {
             <Menu.Item
               key={platform.id}
               value={platform.id + ""}
-              onClick={() => onSelectPlatform(platform)}
+              onClick={() => setPlatform(platform.id)}
             >
               {platform.name}
             </Menu.Item>
