@@ -1,9 +1,10 @@
-import type { Game } from "@/hooks/useGames";
+import type { Game } from "@/entities/Game";
 import getCroppedImageUrl from "@/utils/image-url";
 import { Card, HStack, Image } from "@chakra-ui/react";
+import { Link } from "react-router";
+import Emoji from "./Emoji";
 import GamePlatforms from "./GamePlatforms";
 import Metacritic from "./Metacritic";
-import Emoji from "./Emoji";
 
 interface Props {
   game: Game;
@@ -11,7 +12,11 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card.Root overflow={"hidden"}>
+    <Card.Root
+      overflow={"hidden"}
+      _hover={{ transform: "scale(1.05)" }}
+      transition={"all 0.2s"}
+    >
       <Image
         height={"200px"}
         src={getCroppedImageUrl(game.background_image)}
@@ -24,7 +29,9 @@ const GameCard = ({ game }: Props) => {
           />
           <Metacritic score={game.metacritic} />
         </HStack>
-        <Card.Title>{game.name}</Card.Title>
+        <Card.Title>
+          <Link to={`/game/${game.id}`}>{game.name}</Link>
+        </Card.Title>
         <Emoji rating={game.rating_top} />
       </Card.Body>
     </Card.Root>

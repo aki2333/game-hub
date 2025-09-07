@@ -20,5 +20,10 @@ class apiClient<T> {
       .get<Response<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
+  getById = (id: number) => {
+    return axiosInstance
+      .get<T>(`${this.endpoint}/${id}`)
+      .then((res) => res.data);
+  };
 }
 export default apiClient;

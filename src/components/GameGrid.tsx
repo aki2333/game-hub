@@ -22,7 +22,7 @@ const GameGrid = () => {
         </p>
       }
     >
-      <SimpleGrid columns={[1, 2, 3, 3, 4, 5]} gap={4}>
+      <SimpleGrid columns={[1, 2, 3, 3, 4, 5]} gap={4} paddingY={4}>
         {isLoading &&
           Array.from({ length: 6 }).map((_, index) => (
             <GameCardSkeleton key={index} />
