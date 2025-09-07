@@ -4,7 +4,7 @@ import { FaPlaystation, FaXbox, FaAppStoreIos } from "react-icons/fa";
 import { MdWeb } from "react-icons/md";
 import { HStack, Icon } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
-import type { Platform } from "@/hooks/usePlatforms";
+import type { Platform } from "@/entities/Platform";
 
 interface Props {
   platforms: Platform[];
