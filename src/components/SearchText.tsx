@@ -2,6 +2,7 @@ import useGameQueryStore from "@/stores/gameQueryStore";
 import { Input, InputGroup, Kbd } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
+import { Form } from "react-router";
 
 const SearchText = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,16 +21,17 @@ const SearchText = () => {
     };
   }, []);
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSearchText(inputRef.current?.value || "");
+    <Form
+      action="/"
+      onSubmit={() => {
+        // e.preventDefault();
+        if (inputRef.current) setSearchText(inputRef.current.value);
       }}
     >
       <InputGroup startElement={<LuSearch />} endElement={<Kbd>⌘K</Kbd>}>
         <Input borderRadius={20} placeholder="Search Games" ref={inputRef} />
       </InputGroup>
-    </form>
+    </Form>
   );
 };
 
