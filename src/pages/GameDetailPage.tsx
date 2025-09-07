@@ -1,5 +1,7 @@
 import ExpandableText from "@/components/ExpandableText";
 import GameAttributes from "@/components/GameAttributes";
+import GameMovie from "@/components/GameMovie";
+import GameScreenshots from "@/components/GameScreenshots";
 import useGame from "@/hooks/useGame";
 import { Heading } from "@chakra-ui/react";
 import { useParams } from "react-router";
@@ -14,6 +16,8 @@ const GameDetailPage = () => {
       <Heading size={"4xl"}>{data?.name}</Heading>
       <ExpandableText limit={200}>{data.description_raw}</ExpandableText>
       <GameAttributes game={data} />
+      <GameMovie gameId={data.id} />
+      <GameScreenshots gameId={data.id} />
     </>
   );
 };
